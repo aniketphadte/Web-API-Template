@@ -107,6 +107,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Util\CorsPolicyAttribute.cs" />
     <Compile Include="Util\Handler\ApiExceptionHandler.cs" />
     <Compile Include="Filters\AuthorizeCheck.cs" />
     <Compile Include="Filters\NotImplExceptionFilterAttribute.cs" />

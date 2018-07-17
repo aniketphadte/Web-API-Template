@@ -10,6 +10,7 @@ using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebAPITemplate.Filters;
 using WebAPITemplate.Models;
+using WebAPITemplate.Util;
 
 namespace WebAPITemplate.Controllers
 {
@@ -41,6 +42,7 @@ namespace WebAPITemplate.Controllers
         }
 
         [HttpPost]
+        [CorsPolicy]
         [AuthorizeCheck]
         [Route("v1/AddEmployee")]
         public async Task<IHttpActionResult> AddEmployee(List<Employee> empList)
