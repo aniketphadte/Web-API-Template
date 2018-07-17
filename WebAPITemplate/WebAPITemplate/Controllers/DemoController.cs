@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WebAPITemplate.Filters;
 using WebAPITemplate.Models;
 
 namespace WebAPITemplate.Controllers
@@ -18,10 +19,11 @@ namespace WebAPITemplate.Controllers
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IHttpActionResult> Get()
         {
-            return Ok("WebApi-With-Swagger-Integration " + ConfigurationManager.AppSettings["ApiVersion"]);
+            return Ok("WebApi-Template " + ConfigurationManager.AppSettings["ApiVersion"]);
         }
 
         [HttpGet]
+        [AuthorizeCheck]
         [Route("v1/GetEmployeeDetails")]
         public async Task<IHttpActionResult> GetEmployeeDetails(int empId)
         {
@@ -29,21 +31,30 @@ namespace WebAPITemplate.Controllers
             Employee x = new Employee()
             {
                 Id = empId,
-                Name = "Ujjwal Wagle",
-                BirthDate = "03-May-1988",
+                Name = "Aniket Phadte",
                 Designation = "Software Developer",
-                Experience = "6 Years"
+                Experience = "3 Years"
             };
             return Ok(x);
         }
 
         [HttpPost]
+        [AuthorizeCheck]
         [Route("v1/AddEmployee")]
         public async Task<IHttpActionResult> AddEmployee(List<Employee> empList)
         {
             //Save data from business to data layer
+            throw new Exception();
             return Ok(new { result = string.Format("{0} records added successfully.", empList.Count) });
 
+        }
+
+        [HttpGet]
+        [NotImplExceptionFilter]
+        [Route("v1/GetEmployeeDesignation")]
+        public async Task<IHttpActionResult> GetEmployeeDesignation(int empId)
+        {
+            throw new NotImplementedException("This method is not implemented");
         }
     }
 }

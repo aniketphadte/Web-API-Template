@@ -9,14 +9,14 @@ namespace WebAPITemplate.Filters
 {
     public class AuthorizeCheck: AuthorizeAttribute
     {
-        const string key = "EF56137B67F832F07832F07175AB3EEF1A5BF3C65DD293C075AB3EEF1A";
+        const string key = "AEEFSID27_THIS_IS_MY_API_KEY_AZMSHCJSUKS";
 
         protected override bool IsAuthorized(HttpActionContext actionContext)
         {
             try
             {
-                if (actionContext.Request.Headers.Contains("x"))
-                    return actionContext.Request.Headers.GetValues("x").FirstOrDefault() == key ? true : false;
+                if (actionContext.Request.Headers.Contains("apiKey"))
+                    return actionContext.Request.Headers.GetValues("apiKey").FirstOrDefault() == key ? true : false;
                 else
                     return false;
 
