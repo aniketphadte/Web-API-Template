@@ -6,12 +6,14 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebAPITemplate.Filters;
 using WebAPITemplate.Models;
 
 namespace WebAPITemplate.Controllers
 {
+    [EnableCors(origins: "http://www.DemoWebapp.com", headers: "*", methods: "*")]
     public class DemoController : ApiController
     {
         [HttpGet]
@@ -50,6 +52,7 @@ namespace WebAPITemplate.Controllers
         }
 
         [HttpGet]
+        [DisableCors]
         [NotImplExceptionFilter]
         [Route("v1/GetEmployeeDesignation")]
         public async Task<IHttpActionResult> GetEmployeeDesignation(int empId)

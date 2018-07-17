@@ -15,10 +15,14 @@ namespace WebAPITemplate
             // Web API configuration and services
             config.Services.Add(typeof(IExceptionLogger), new ApiExceptionLogger());
             config.Services.Replace(typeof(IExceptionHandler), new ApiExceptionHandler());
-            //config.Filters.Add(new GeneralExceptionFilterAttribute());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+            config.EnableCors();
+            /* Apply CORS globally
+            var cors = new EnableCorsAttribute("http://www.DemoWebapp.com", "*", "*");
+            config.EnableCors(cors);
+             */
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
